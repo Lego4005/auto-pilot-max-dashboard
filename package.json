@@ -1,0 +1,52 @@
+{
+  "name": "auto-pilot-max-team-dashboard",
+  "version": "1.0.0",
+  "description": "Team management dashboard for Auto-Pilot-Max with GitHub integration",
+  "private": true,
+  "scripts": {
+    "dev": "bun run next dev",
+    "build": "bun run next build",
+    "start": "bun run next start",
+    "lint": "bun run next lint",
+    "deploy": "./deploy.sh",
+    "deploy:legonow": "vercel deploy --prod --scope legonow",
+    "deploy:preview": "vercel deploy --scope legonow",
+    "setup:team": "vercel teams switch legonow",
+    "env:setup": "vercel env pull .env.local --scope legonow",
+    "install:bun": "bun install",
+    "clean": "rm -rf .next node_modules",
+    "fresh": "bun run clean && bun install && bun run build"
+  },
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "@octokit/webhooks": "^12.0.0",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toast": "^1.1.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "date-fns": "^3.0.0",
+    "lucide-react": "^0.263.1",
+    "next": "14.2.3",
+    "octokit": "^3.1.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "recharts": "^2.8.0",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss": "^3.4.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8",
+    "typescript": "^5",
+    "autoprefixer": "^10.4.19"
+  },
+  "packageManager": "bun@1.1.0"
+}

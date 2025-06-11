@@ -1,0 +1,58 @@
+{
+    "name": "auto-pilot-max-team-dashboard",
+    "version": 2,
+    "framework": "nextjs",
+    "buildCommand": "bun run build",
+    "outputDirectory": ".next",
+    "installCommand": "bun install",
+    "devCommand": "bun run dev",
+    "regions": [
+        "iad1",
+        "sfo1"
+    ],
+    "env": {
+        "NEXT_PUBLIC_MCP_SERVER_URL": "https://auto-pilot-max-mcp-v2.fly.dev",
+        "NEXT_PUBLIC_USER_EMAIL": "colby@bit9.ai",
+        "NEXT_PUBLIC_USER_ID": "Q11wu5ZabHa2JdfCqzIQcUxM",
+        "NEXT_PUBLIC_ENABLE_ANALYTICS": "true",
+        "NEXT_PUBLIC_REFRESH_INTERVAL": "30000",
+        "VERCEL_TEAM": "legonow"
+    },
+    "functions": {
+        "src/app/api/**/*.ts": {
+            "maxDuration": 30
+        }
+    },
+    "headers": [
+        {
+            "source": "/api/(.*)",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "Content-Type, Authorization"
+                }
+            ]
+        }
+    ],
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "/dashboard",
+            "permanent": false
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/mcp/:path*",
+            "destination": "https://auto-pilot-max-mcp-v2.fly.dev/api/:path*"
+        }
+    ]
+}
