@@ -1,152 +1,172 @@
-# Auto-Pilot-Max Team Dashboard
+# 🚀 Auto-Pilot-Max Team Dashboard
 
-Professional team management dashboard for Auto-Pilot-Max MCP system with department-based API key generation and real-time analytics.
+Professional team management dashboard for Auto-Pilot-Max MCP system with GitHub integration, real-time analytics, and department-based organization.
 
-## Quick Deploy to Vercel
+![Team Dashboard](https://img.shields.io/badge/Status-Live-brightgreen)
+![Bun](https://img.shields.io/badge/Bun-Lightning%20Fast-orange)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Vercel](https://img.shields.io/badge/Vercel-Ready-black)
 
-### Prerequisites
+## ✨ Features
 
-- **Vercel Team**: **legonow** (Pro Account)
-- **User**: lego4005
-- User email: **<colby@bit9.ai>**
-- User ID: **Q11wu5ZabHa2JdfCqzIQcUxM**
-- MCP Server: **auto-pilot-max-mcp-v2.fly.dev**
+- **🎯 Professional Team Management** - Department-based organization (Engineering, Design, Product, DevOps, etc.)
+- **⚡ Real-time Analytics** - Live usage tracking and performance metrics
+- **🔗 GitHub Integration** - Track commits, PRs, and development velocity
+- **📊 MCP Correlation** - Monitor 378x acceleration alongside development output
+- **🔐 Secure API Keys** - Department-based key generation and management
+- **📱 Responsive Design** - Beautiful UI with Tailwind CSS and Radix components
+- **🚀 Blazing Fast** - Built with Bun for lightning deployments
 
-### 1-Click Deploy
+## 🚀 Quick Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-repo/vercel-dashboard&team-slug=legonow)
+### Option 1: One-Click Vercel Deploy
 
-### Manual Deployment
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Lego4005/auto-pilot-max-dashboard&env=NEXT_PUBLIC_MCP_SERVER_URL,MCP_ADMIN_KEY,GITHUB_TOKEN&envDescription=Configure%20MCP%20server%20and%20GitHub%20integration&demo-title=Auto-Pilot-Max%20Dashboard&demo-description=Professional%20team%20management%20for%20MCP%20systems)
+
+### Option 2: Manual Deployment
 
 ```bash
-# Clone and deploy to legonow team
-cd vercel-dashboard
-npm install
-vercel deploy --team legonow
+# Clone repository
+git clone https://github.com/Lego4005/auto-pilot-max-dashboard.git
+cd auto-pilot-max-dashboard
 
-# Set environment variables during deployment:
-# NEXT_PUBLIC_MCP_SERVER_URL: https://auto-pilot-max-mcp-v2.fly.dev
-# MCP_ADMIN_KEY: autopilot-admin-64dd7aa8c9b0454a
-# NEXT_PUBLIC_USER_EMAIL: colby@bit9.ai
-# NEXT_PUBLIC_USER_ID: Q11wu5ZabHa2JdfCqzIQcUxM
+# Install dependencies with Bun (recommended)
+bun install
+
+# Or use npm/yarn
+npm install
+
+# Build and deploy
+bun run deploy:legonow
 ```
 
-## Features
+## ⚙️ Environment Variables
 
-### Department-Based API Key Management
-
-- **Engineering**: `autopilot-engineering-{role}-{id}`
-- **Design**: `autopilot-design-{role}-{id}`
-- **Product**: `autopilot-product-{role}-{id}`
-- **Data Science**: `autopilot-datascience-{role}-{id}`
-- **DevOps**: `autopilot-devops-{role}-{id}`
-- **QA**: `autopilot-qa-{role}-{id}`
-- **Management**: `autopilot-management-{role}-{id}`
-
-### Real-Time Analytics
-
-- Team performance metrics (refreshes every 30s)
-- Usage tracking and quotas
-- Department filtering and role management
-- Export functionality for reports
-
-### Security Features
-
-- Protected API key generation
-- Role-based access control (Admin, Developer, Team Lead, Viewer)
-- Usage quota enforcement
-- Audit logging
-
-## Configuration
-
-### Environment Variables
+Create a `.env.local` file with these variables:
 
 ```bash
-# Required
-NEXT_PUBLIC_MCP_SERVER_URL=https://auto-pilot-max-mcp-v2.fly.dev
-MCP_ADMIN_KEY=autopilot-admin-64dd7aa8c9b0454a
-NEXT_PUBLIC_USER_EMAIL=colby@bit9.ai
-NEXT_PUBLIC_USER_ID=Q11wu5ZabHa2JdfCqzIQcUxM
+# Required: MCP Server Configuration
+NEXT_PUBLIC_MCP_SERVER_URL=https://your-mcp-server.fly.dev
+MCP_ADMIN_KEY=your-admin-key
 
-# Optional
+# Required: Team Information  
+NEXT_PUBLIC_USER_EMAIL=your-email@company.com
+NEXT_PUBLIC_USER_ID=your-user-id
+VERCEL_TEAM=your-team-slug
+
+# Optional: GitHub Integration
+GITHUB_TOKEN=ghp_your-github-personal-access-token
+
+# Optional: Analytics
 NEXT_PUBLIC_ENABLE_ANALYTICS=true
 NEXT_PUBLIC_REFRESH_INTERVAL=30000
-VERCEL_TEAM=legonow
 ```
 
-### Vercel Project Settings
+## 🔧 GitHub Integration Setup
 
-1. **Framework Preset**: Next.js
-2. **Node.js Version**: 18.x
-3. **Build Command**: `npm run build`
-4. **Output Directory**: `.next`
-5. **Install Command**: `npm install`
-6. **Team**: legonow (Pro Account)
+1. **Create GitHub Personal Access Token**:
+   - Go to GitHub Settings → Developer settings → Personal access tokens
+   - Generate new token with `repo`, `read:user`, and `read:org` scopes
+   - Add token to `GITHUB_TOKEN` environment variable
 
-## API Integration
+2. **Configure Repository**:
+   - Update the repository owner/name in `/api/github/stats/route.ts`
+   - Set up webhooks for real-time updates (optional)
 
-The dashboard connects to your existing Fly.io MCP server:
+3. **Team Correlation**:
+   - GitHub usernames are matched with team member emails
+   - Development velocity correlates with MCP usage automatically
 
-```typescript
-// API endpoints available:
-// GET /api/team - List all team members
-// POST /api/team/member - Add new team member
-// PUT /api/team/member/:id - Update member
-// DELETE /api/team/member/:id - Remove member
-// GET /api/analytics - Get usage analytics
-// POST /api/keys/generate - Generate department API key
-```
-
-## Usage Quotas
-
-- **Standard**: 10,000 requests/month
-- **Premium**: 50,000 requests/month  
-- **Unlimited**: No limits (Management/Admin only)
-
-## Development
-
-```bash
-# Local development
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-## Team Roles
-
-1. **Admin**: Full access, can manage all departments
-2. **Team Lead**: Department management, view analytics
-3. **Developer**: Standard access, own department only
-4. **Viewer**: Read-only access, basic analytics
-
-## Support
-
-- **Primary Contact**: <colby@bit9.ai>
-- **Vercel Team**: legonow (Pro Account)
-- **Team Member**: lego4005
-- **MCP Server**: auto-pilot-max-mcp-v2.fly.dev
-- **Admin Key**: autopilot-admin-64dd7aa8c9b0454a
-
-## Architecture
+## 🏗️ Architecture
 
 ```
-Vercel Dashboard (Frontend)
-    ↓ API calls
-Fly.io MCP Server (Backend)
-    ↓ SQLite Database
-Team Management + Analytics
+vercel-dashboard/
+├── src/
+│   ├── app/
+│   │   ├── api/github/         # GitHub integration APIs
+│   │   ├── globals.css         # Global styles with Tailwind
+│   │   ├── layout.tsx          # Root layout
+│   │   └── page.tsx            # Main dashboard
+│   ├── components/
+│   │   ├── ui/                 # Radix UI components
+│   │   ├── github-activity.tsx # GitHub analytics
+│   │   ├── team-member-card.tsx # Team management
+│   │   └── usage-chart.tsx     # Performance charts
+│   └── lib/
+│       └── utils.ts            # Utilities and helpers
+├── package.json                # Bun-optimized dependencies
+├── tailwind.config.js          # Tailwind configuration
+├── vercel.json                 # Vercel deployment config
+└── deploy.sh                   # Team deployment script
 ```
 
-## Next Steps
+## 🎨 UI Components
 
-1. Deploy to Vercel using the **legonow** team (Pro Account)
-2. Configure environment variables with provided credentials
-3. Add team members through the dashboard
-4. Generate department-specific API keys
-5. Monitor usage through real-time analytics
+Built with professional-grade components:
 
-The dashboard will be accessible at your Vercel domain under the **legonow** team and will provide full team management for your Auto-Pilot-Max system with 378x acceleration capabilities.
+- **Team Management**: Department filtering, role-based access
+- **Analytics Dashboard**: Real-time usage charts and metrics  
+- **GitHub Activity**: Commit tracking, PR analysis, velocity correlation
+- **Performance Metrics**: MCP acceleration and success rates
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+
+## 📊 Analytics Features
+
+### Team Performance
+- **Usage Tracking**: API calls per member and department
+- **Acceleration Metrics**: 378x factor monitoring
+- **Success Rates**: Error tracking and performance insights
+- **Department Analytics**: Cross-team comparisons
+
+### GitHub Integration
+- **Commit Analysis**: Track commits, files changed, lines of code
+- **Pull Request Monitoring**: PR creation, review, and merge tracking
+- **Development Velocity**: Correlate GitHub activity with MCP usage
+- **Team Productivity**: Identify high-performing combinations
+
+## 🚀 Deployment Options
+
+### Vercel (Recommended)
+- Optimized for Next.js with edge functions
+- Built-in environment variable management
+- Automatic deployments from GitHub
+- Team collaboration features
+
+### Other Platforms
+- **Netlify**: Use `npm run build && npm run export`
+- **Railway**: Docker deployment ready
+- **Fly.io**: Can integrate with existing MCP infrastructure
+
+## 🔐 Security
+
+- **API Key Management**: Secure generation and storage
+- **Environment Isolation**: Separate dev/staging/production configs
+- **Access Control**: Role-based permissions system
+- **Rate Limiting**: Built-in protection against abuse
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Auto-Pilot-Max**: 378x development acceleration
+- **MetaMCP**: Inspiration for professional MCP UX
+- **legonow Team**: Pro account and deployment infrastructure
+- **Vercel**: Blazing fast hosting platform
+- **Bun**: Lightning-fast JavaScript runtime
+
+---
+
+**Live Dashboard**: https://autopilot-goa21patc-legonow.vercel.app
+
+Built with ❤️ for the Auto-Pilot-Max ecosystem
