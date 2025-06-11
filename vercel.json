@@ -1,5 +1,4 @@
 {
-    "name": "auto-pilot-max-team-dashboard",
     "version": 2,
     "framework": "nextjs",
     "buildCommand": "bun run build",
